@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Open In Bruno</title>
+  <style>
+    .bruno-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .bruno-modal-content {
+      background-color: white;
+      padding: 1.5rem 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 24rem;
+      width: 100%;
+      position: relative;
+    }
+    .bruno-logo {
+      margin: 0 auto 1rem auto;
+      width: 100px;
+      height: 100px;
+    }
+    .bruno-modal-open-button {
+      background-color: #F0AC53;
+      color: white;
+      font-size: 1.125rem;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+    .bruno-modal-open-button:hover {
+      background-color: #e29948;
+    }
+    .bruno-modal-description {
+      margin-top: 1rem;
+      color: #4B5563;
+      font-family: sans-serif;
+    }
+    .bruno-download-link {
+      font-weight: bold;
+      color: black;
+      text-decoration: none;
+    }
+    .bruno-download-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+<div class="bruno-modal-overlay">
+  <div class="bruno-modal-content">
+    <img src="https://docs.usebruno.com/bruno.png" alt="Cute dog icon with a happy face and tongue sticking out" class="bruno-logo" width="100" height="100">
+    <button class="bruno-modal-open-button">Open In Bruno</button>
+    <p class="bruno-modal-description">Don't have the app yet? <a href="https://www.usebruno.com/downloads" class="bruno-download-link" target="_blank">Download Now</a></p>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    const gitUrl = getQueryParam('url') || '';
+
+    const openButton = document.querySelector('.bruno-modal-open-button');
+    openButton.onclick = () => {
+      if (gitUrl) {
+        const brunoUrl = `bruno://fetch?collectionUrl=${encodeURIComponent(gitUrl)}`;
+        window.location.href = brunoUrl;
+      } else {
+        alert('No Git URL provided.');
+      }
+    }
+
+  });
+</script>
+</body>
