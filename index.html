@@ -83,7 +83,7 @@
     const openButton = document.querySelector('.bruno-modal-open-button');
     openButton.onclick = () => {
       if (gitUrl) {
-        const brunoUrl = `bruno://collection/import/git?url=${encodeURIComponent(gitUrl)}`;
+        const brunoUrl = `bruno://app/collection/import/git?url=${encodeURIComponent(gitUrl)}`;
         window.location.href = brunoUrl;
       } else {
         alert('No Git URL provided.');
