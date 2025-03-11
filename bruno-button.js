@@ -116,7 +116,7 @@
       openButton.className = 'bruno-modal-open-button';
       openButton.textContent = 'Open In Bruno';
       openButton.onclick = () => {
-        const brunoUrl = `bruno://fetch?collectionUrl=${encodeURIComponent(
+        const brunoUrl = `bruno://collection/import/git?url=${encodeURIComponent(
           collectionUrl
         )}`;
         window.location.href = brunoUrl;
